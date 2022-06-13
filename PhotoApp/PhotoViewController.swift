@@ -32,6 +32,11 @@ extension PhotoViewController {
         view.addSubview(collectionView)
         collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         collectionView.backgroundColor = .systemBackground
+        collectionView.register(
+            HeaderView.self,
+            forSupplementaryViewOfKind: PhotoViewController.photoVCID,
+            withReuseIdentifier: HeaderView.headerViewID
+        )
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: PhotoCell.photoCellID)
         collectionView.register(FoodCell.self, forCellWithReuseIdentifier: FoodCell.reuseId)
 
@@ -71,6 +76,13 @@ extension PhotoViewController {
             }
         }
 
+        dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath)
+            -> UICollectionReusableView? in
+            guard let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: HeaderView.headerViewID, for: indexPath) as? HeaderView else { fatalError("Cannot create header view") }
+            supplementaryView.label.text = Section.allCases[indexPath.section].rawValue
+            return supplementaryView
+        }
+
         let snapshot = snapshotForCurrentState()
         dataSource.apply(snapshot, animatingDifferences: false)
     }
@@ -95,6 +107,9 @@ extension PhotoViewController {
 
     func generateMyAlbumsLayout() -> NSCollectionLayoutSection {
 
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(25))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: PhotoViewController.photoVCID, alignment: .top)
+
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 5)
@@ -104,12 +119,16 @@ extension PhotoViewController {
 
 
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = .groupPaging
 
         return section
     }
 
     func generateDogAlbumsLayout() -> NSCollectionLayoutSection {
+
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(25))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: PhotoViewController.photoVCID, alignment: .top)
 
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -119,12 +138,16 @@ extension PhotoViewController {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
 
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = .groupPaging
 
         return section
     }
 
     func generateCatAndFoodAlbumsLayout() -> NSCollectionLayoutSection {
+
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(25))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: PhotoViewController.photoVCID, alignment: .top)
 
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(86))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -135,6 +158,7 @@ extension PhotoViewController {
 
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
+        section.boundarySupplementaryItems = [sectionHeader]
 
         return section
     }
