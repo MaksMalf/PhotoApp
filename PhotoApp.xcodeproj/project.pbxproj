@@ -12,6 +12,7 @@
 		8DF059662857A2EB00415969 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DF059652857A2EB00415969 /* Assets.xcassets */; };
 		8DF059692857A2EB00415969 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DF059672857A2EB00415969 /* LaunchScreen.storyboard */; };
 		8DF059712857A47C00415969 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF059702857A47C00415969 /* MainTabBarController.swift */; };
+		8DF059732857B91400415969 /* PhotoItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF059722857B91400415969 /* PhotoItemModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		8DF059682857A2EB00415969 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DF0596A2857A2EB00415969 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DF059702857A47C00415969 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		8DF059722857B91400415969 /* PhotoItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				8DF0595C2857A2EB00415969 /* AppDelegate.swift */,
+				8DF059722857B91400415969 /* PhotoItemModel.swift */,
 				8DF059702857A47C00415969 /* MainTabBarController.swift */,
 				8DF059602857A2EB00415969 /* ViewController.swift */,
 				8DF059652857A2EB00415969 /* Assets.xcassets */,
@@ -135,6 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DF059612857A2EB00415969 /* ViewController.swift in Sources */,
+				8DF059732857B91400415969 /* PhotoItemModel.swift in Sources */,
 				8DF0595D2857A2EB00415969 /* AppDelegate.swift in Sources */,
 				8DF059712857A47C00415969 /* MainTabBarController.swift in Sources */,
 			);
